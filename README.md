@@ -10,9 +10,17 @@ Fix-It Lens is a two-pass repair diagnostic. A single photo almost never contain
 
 1. **Reads the problem** from your photo and description, and states its confidence honestly.
 2. **Plans the fix** &mdash; difficulty, rough time and materials cost, a DIY-or-call-a-pro verdict, a checkable supplies list (essential vs. optional), the tools you'll need, diagnosis checks to run before you buy anything, and the ordered repair steps.
-3. **Asks what it can't see.** The two to four questions that would most change the plan render as answerable fields. Fill in what you can and hit **Refine the plan** for a second, sharper pass.
+3. **Asks what it can't see.** The two to four questions that would most change the plan render as answerable fields. Fill in what you can, add any other detail you noticed, and hit **Refine the plan** for a second, sharper pass.
 
 A safety layer runs through the whole thing: the model is prompted to flag anything involving electrical, gas, plumbing behind walls, structural members, suspected mold, or asbestos-era materials, and to say plainly when a job belongs with a licensed professional rather than talk a homeowner into dangerous work.
+
+## Sharing a plan
+
+Once a plan is on screen, an actions row gives you four ways to take it with you. **Print / PDF** renders a clean light-themed report (with the photo) through the browser's print dialog, which doubles as save-to-PDF. **Email** opens a pre-filled message with the plan as the body. **Download** saves the plan as a plain-text file. **Copy** puts the full plan on your clipboard. All of them draw from the same report so the contents stay consistent.
+
+## Saving and resuming a job
+
+Repairs rarely get diagnosed and finished in one sitting &mdash; often you need to go measure something, look behind a panel, or wait until the weekend. The folder button in the header opens **Saved jobs**, where you can stash the current job (photo, description, plan, and any answers you've typed) and come back to it later. Resuming restores everything exactly as you left it, including partially answered questions, so you can add the answers you couldn't give before, drop in new information mid-task, and refine from there. A draft saved before diagnosis comes back ready for its first **Diagnose**. Jobs live in `localStorage` on your device; the app keeps the six most recent.
 
 ## Using it
 
