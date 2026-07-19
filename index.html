@@ -428,6 +428,71 @@
   }
   .m-save:hover{filter:brightness(1.06)}
 
+  /* ---- results actions ---- */
+  .actions{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;
+    padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  }
+  .actions button{
+    flex:1 1 auto;min-width:calc(50% - 4px);
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;
+    padding:10px 8px;border-radius:5px;cursor:pointer;
+    background:var(--chassis);border:1px solid var(--line);color:var(--ink-dim);
+    transition:border-color .15s,color .15s;
+  }
+  .actions button:hover{border-color:var(--amber);color:var(--amber)}
+  .actions button svg{width:15px;height:15px}
+  .actions .act-save{border-color:var(--amber-deep);color:var(--amber)}
+  .actions .act-save:hover{background:var(--amber-deep-bg)}
+
+  /* ---- extra info ---- */
+  .extra-block{margin:18px 0 6px}
+  .extra-block label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+  .extra-block textarea{min-height:64px}
+
+  /* ---- jobs modal ---- */
+  .save-row{display:flex;gap:8px;margin-bottom:18px}
+  .save-row input{flex:1;min-width:0;font-family:var(--sans);font-size:14.5px;color:var(--ink);background:var(--inset);border:1px solid var(--line);border-radius:6px;padding:11px 13px}
+  .save-row input:focus{outline:none;border-color:var(--amber)}
+  .save-row button{flex:none;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#1a1206;background:var(--amber);border:none;border-radius:6px;padding:0 16px;cursor:pointer}
+  .save-row button:disabled{background:var(--line);color:var(--ink-faint);cursor:not-allowed}
+  .jobs-list{list-style:none;max-height:52vh;overflow:auto;margin:0 -4px;padding:0 4px}
+  .job{display:flex;gap:12px;align-items:center;padding:10px;background:var(--inset);border:1px solid var(--line);border-radius:8px;margin-bottom:9px}
+  .job-thumb{width:52px;height:52px;flex:none;border-radius:6px;object-fit:cover;background:var(--chassis);border:1px solid var(--line)}
+  .job-main{flex:1;min-width:0}
+  .job-name{font-family:var(--cond);font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .job-meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);letter-spacing:.04em;margin-top:3px}
+  .job-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:5px}
+  .job-badge.open{color:var(--amber);background:var(--amber-deep-bg)}
+  .job-badge.done{color:var(--green);background:var(--green-deep-bg)}
+  .job-badge.draft{color:var(--ink-dim);background:var(--chassis)}
+  .job-acts{display:flex;flex-direction:column;gap:6px;flex:none}
+  .job-acts button{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:5px;cursor:pointer;border:1px solid var(--line);background:var(--chassis);color:var(--ink-dim)}
+  .job-acts .j-resume{border-color:var(--amber-deep);color:var(--amber)}
+  .job-acts .j-resume:hover{background:var(--amber-deep-bg)}
+  .job-acts .j-del:hover{border-color:var(--red);color:var(--red)}
+  .jobs-empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:26px 10px;line-height:1.5}
+
+  /* ---- print document ---- */
+  #printDoc{display:none}
+  @media print{
+    html,body{background:#fff}
+    .wrap,#toast,.modal{display:none !important}
+    #printDoc{display:block;color:#111;max-width:720px;margin:0 auto;font-family:'IBM Plex Sans',sans-serif}
+    #printDoc .pd-title{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:24px;letter-spacing:.03em;text-transform:uppercase}
+    #printDoc .pd-date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#666;margin:4px 0 16px;letter-spacing:.06em}
+    #printDoc .pd-photo{max-width:340px;width:100%;border:1px solid #ccc;border-radius:4px;margin:0 0 18px;display:block}
+    #printDoc h3{font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #ddd;padding-bottom:5px;margin:18px 0 9px}
+    #printDoc p{font-size:13.5px;line-height:1.55;margin-bottom:6px}
+    #printDoc ul,#printDoc ol{margin:0 0 8px 20px;font-size:13.5px;line-height:1.5}
+    #printDoc li{margin-bottom:4px}
+    #printDoc .pd-flag{border-left:3px solid #c0392b;padding-left:9px;margin-bottom:7px;font-size:13.5px}
+    #printDoc .pd-meta span{display:inline-block;margin-right:20px;margin-bottom:4px;font-size:13px}
+    #printDoc .pd-disc{margin-top:22px;padding-top:12px;border-top:1px solid #ddd;font-size:11.5px;color:#666}
+    @page{margin:16mm}
+  }
+
   @media (prefers-reduced-motion: reduce){
     .scope.scanning .scanline,.scope.scanning .reticle,.scope.scanning .scan-tag,.spin{animation:none}
     .scope.scanning .scanline{opacity:.6}
@@ -443,6 +508,9 @@
     </div>
     <div class="head-right">
       <span class="appnum">072</span>
+      <button class="gear" id="jobsBtn" aria-label="Saved jobs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path></svg>
+      </button>
       <button class="gear" id="gearBtn" aria-label="Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
       </button>
@@ -520,6 +588,25 @@
   </div>
 </div>
 
+<!-- jobs modal -->
+<div class="modal" id="jobsModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Saved jobs</h2>
+      <button id="closeJobs" aria-label="Close">&times;</button>
+    </div>
+    <p class="modal-sub">Save a job to finish later &mdash; your photo, plan, and any answers come back with it. Everything stays on this device.</p>
+    <div class="save-row">
+      <input type="text" id="jobName" placeholder="Name this job (e.g. hallway wall hole)" autocomplete="off">
+      <button id="saveJobBtn">Save</button>
+    </div>
+    <ul class="jobs-list" id="jobsList"></ul>
+  </div>
+</div>
+
+<!-- print document (built on demand) -->
+<div id="printDoc"></div>
+
 <div id="toast"></div>
 
 <script>
@@ -569,6 +656,9 @@ const SYSTEM_PROMPT = [
 let imgData = null;      // { base64, mediaType, dataUrl }
 let lastPayload = null;  // { description }
 let busy = false;
+let currentPlan = null;  // last rendered plan JSON
+let currentJobId = null; // id of a loaded/saved job
+let pendingRestore = null; // { answers, extra } to repopulate after a resume
 
 // ---- els ----
 const $ = function(id){ return document.getElementById(id); };
@@ -592,6 +682,12 @@ $('saveSettings').addEventListener('click', function(){
 });
 function getKey(){ return localStorage.getItem(LS_KEY) || ''; }
 function getModel(){ return localStorage.getItem(LS_MODEL) || CLAUDE_MODEL; }
+
+// ---- jobs modal wiring ----
+$('jobsBtn').addEventListener('click', function(){ openJobs(false); });
+$('closeJobs').addEventListener('click', closeJobsModal);
+$('jobsModal').addEventListener('click', function(e){ if(e.target === $('jobsModal')) closeJobsModal(); });
+$('saveJobBtn').addEventListener('click', saveCurrentJob);
 
 // ---- toast ----
 let toastTimer = null;
@@ -644,6 +740,8 @@ async function processImage(file){
     placeholder.style.display = 'none';
     scopeInner.classList.add('has-img');
     retake.classList.remove('hidden');
+    currentPlan = null; currentJobId = null; pendingRestore = null;
+    results.className = 'hidden'; results.innerHTML = '';
   }catch(err){
     showToast("Couldn't read that image. Try a JPG or PNG.", true);
   }
@@ -724,11 +822,13 @@ async function runDiagnose(){
 
 async function runRefine(answers){
   const btn = $('refineBtn');
-  const prior = lastPayload.description ? ('The homeowner originally said: "' + lastPayload.description + '". ') : '';
+  const extra = ($('extraInfo') && $('extraInfo').value.trim()) || '';
+  const prior = (lastPayload && lastPayload.description) ? ('The homeowner originally said: "' + lastPayload.description + '". ') : '';
   const answered = answers.filter(function(a){ return a.answer; })
     .map(function(a){ return 'Q: ' + a.q + '\nA: ' + a.answer; }).join('\n\n');
-  const userText = prior + "Here are answers to your follow-up questions:\n\n" + answered +
-    "\n\nWith this new information, re-diagnose from the same photo and return an updated JSON plan. Raise or lower your confidence to match what you now know.";
+  let userText = prior + "Here are answers to the follow-up questions:\n\n" + (answered || '(no specific answers given)');
+  if(extra) userText += "\n\nAdditional information from the homeowner:\n" + extra;
+  userText += "\n\nWith this new information, re-diagnose from the same photo and return an updated JSON plan. Raise or lower your confidence to match what you now know.";
   if(btn){ btn.disabled = true; btn.innerHTML = '<span class="spin"></span><span>Refining</span>'; }
   setBusy(true, 'refine');
   scope.classList.add('scanning'); setFrameH();
@@ -771,8 +871,18 @@ const WARN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 function rule(n, label){ return '<div class="rule"><span class="rnum">' + n + '</span><span class="rlabel">' + label + '</span><span class="rline"></span></div>'; }
 
 function renderResults(p, refined){
+  currentPlan = p;
   let html = '';
   if(refined) html += '<div class="refined-note">&#10003; Plan refined with your answers</div>';
+
+  // export + save actions
+  html += '<div class="actions">';
+  html += '<button id="actPrint">' + ICON.print + 'Print / PDF</button>';
+  html += '<button id="actEmail">' + ICON.mail + 'Email</button>';
+  html += '<button id="actDownload">' + ICON.download + 'Download</button>';
+  html += '<button id="actCopy">' + ICON.copy + 'Copy</button>';
+  html += '<button class="act-save" id="actSave">' + ICON.save + 'Save job</button>';
+  html += '</div>';
 
   // read + confidence
   const conf = Math.max(0, Math.min(100, parseInt(p.confidence, 10) || 0));
@@ -843,15 +953,17 @@ function renderResults(p, refined){
     html += '</ol>';
   }
 
-  // questions -> refine
-  if(p.questions && p.questions.length){
-    html += rule('Q', 'Answer to sharpen');
+  // questions + added info -> refine
+  const hasQ = !!(p.questions && p.questions.length);
+  html += rule('Q', hasQ ? 'Answer to sharpen' : 'Add more, then refine');
+  if(hasQ){
     html += '<p class="q-intro">The photo only shows so much. Answer what you can and refine the plan &mdash; leave the rest blank.</p>';
     p.questions.forEach(function(q, i){
       html += '<div class="q-block"><div class="qt">' + esc(q) + '</div><input type="text" data-q="' + esc(q) + '" id="q' + i + '" placeholder="Your answer"></div>';
     });
-    html += '<button class="refine" id="refineBtn">' + refineBtnInner() + '</button>';
   }
+  html += '<div class="extra-block"><label for="extraInfo">Anything else to add?</label><textarea id="extraInfo" placeholder="A measurement, what you found when you looked closer, a new symptom..."></textarea></div>';
+  html += '<button class="refine" id="refineBtn">' + refineBtnInner() + '</button>';
 
   results.className = '';
   results.innerHTML = html;
@@ -860,16 +972,34 @@ function renderResults(p, refined){
   results.querySelectorAll('.check-item').forEach(function(el){
     el.addEventListener('click', function(){ el.classList.toggle('checked'); });
   });
+
+  // wire export + save actions
+  wire($('actPrint'), doPrint);
+  wire($('actEmail'), doEmail);
+  wire($('actDownload'), doDownload);
+  wire($('actCopy'), doCopy);
+  wire($('actSave'), function(){ openJobs(true); });
+
+  // repopulate answers + added info when resuming a saved job
+  if(pendingRestore){
+    const ans = pendingRestore.answers || [];
+    results.querySelectorAll('input[data-q]').forEach(function(inp){
+      const q = inp.getAttribute('data-q');
+      const m = ans.find(function(a){ return a.q === q; });
+      if(m) inp.value = m.answer || '';
+    });
+    if(pendingRestore.extra && $('extraInfo')) $('extraInfo').value = pendingRestore.extra;
+    pendingRestore = null;
+  }
+
   // wire refine
   const rb = $('refineBtn');
   if(rb){
     rb.addEventListener('click', function(){
       if(busy) return;
-      const answers = [];
-      results.querySelectorAll('input[data-q]').forEach(function(inp){
-        answers.push({ q: inp.getAttribute('data-q'), answer: inp.value.trim() });
-      });
-      if(!answers.some(function(a){ return a.answer; })){ showToast('Answer at least one question to refine.', true); return; }
+      const answers = gatherAnswers();
+      const extra = ($('extraInfo') && $('extraInfo').value.trim()) || '';
+      if(!answers.some(function(a){ return a.answer; }) && !extra){ showToast('Answer a question or add a detail to refine.', true); return; }
       runRefine(answers);
     });
   }
@@ -881,6 +1011,291 @@ function refineBtnInner(){
 
 function checkItem(nameHtml, note){
   return '<li class="check-item"><span class="box">' + CHECK_SVG + '</span><div class="ci-body"><div class="ci-name">' + nameHtml + '</div>' + (note ? '<div class="ci-note">' + esc(note) + '</div>' : '') + '</div></li>';
+}
+
+// ---- icons for actions ----
+var ICON = {
+  print:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
+  download:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+  save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>'
+};
+function wire(el, fn){ if(el) el.addEventListener('click', fn); }
+
+// ---- shared state collection ----
+function gatherAnswers(){
+  var out = [];
+  results.querySelectorAll('input[data-q]').forEach(function(inp){
+    out.push({ q: inp.getAttribute('data-q'), answer: inp.value.trim() });
+  });
+  return out;
+}
+function collectState(){
+  return {
+    description: lastPayload ? lastPayload.description : desc.value.trim(),
+    plan: currentPlan,
+    answers: gatherAnswers(),
+    extra: ($('extraInfo') && $('extraInfo').value.trim()) || '',
+    image: imgData ? imgData.dataUrl : null,
+    mediaType: imgData ? imgData.mediaType : null
+  };
+}
+function dateSlug(){ var d = new Date(); function z(n){ return (n < 10 ? '0' : '') + n; } return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()); }
+function diffLabel(k){ return DIFF[k] ? DIFF[k].v : (k || '-'); }
+function verdictLabel(k){ return VERDICT[k] ? VERDICT[k].label : (k || '-'); }
+
+// ---- plain-text report ----
+function buildReport(){
+  var st = collectState(), p = st.plan, L = [];
+  L.push('FIX-IT LENS  |  REPAIR PLAN');
+  L.push('Generated ' + new Date().toLocaleString());
+  L.push('');
+  L.push('PROBLEM');
+  L.push(st.description || '(no description provided)');
+  L.push('');
+  if(!p){ L.push('(Not yet diagnosed.)'); return L.join('\n'); }
+  L.push('THE READ');
+  L.push(p.read || '');
+  L.push('Confidence: ' + (parseInt(p.confidence, 10) || 0) + '%');
+  if(p.confidence_note) L.push('Note: ' + p.confidence_note);
+  L.push('');
+  L.push('ASSESSMENT');
+  L.push('Difficulty: ' + diffLabel(p.difficulty));
+  L.push('Time: ' + (p.time_estimate || '-') + '    Materials: ' + (p.cost_estimate || '-'));
+  L.push('Verdict: ' + verdictLabel(p.verdict) + (p.verdict_note ? ' - ' + p.verdict_note : ''));
+  L.push('');
+  if(p.safety_flags && p.safety_flags.length){
+    L.push('SAFETY FLAGS');
+    p.safety_flags.forEach(function(f){ L.push('[' + (f.level === 'danger' ? 'DANGER' : 'CAUTION') + '] ' + f.text); });
+    L.push('');
+  }
+  if(p.supplies && p.supplies.length){
+    L.push('SUPPLIES');
+    p.supplies.forEach(function(s){ L.push('- ' + s.item + ' (' + (s.essential ? 'Essential' : 'Optional') + ')' + (s.note ? ' - ' + s.note : '')); });
+    L.push('');
+  }
+  if(p.tools && p.tools.length){
+    L.push('TOOLS');
+    p.tools.forEach(function(t){ var k = t.have_or_rent === 'rent' ? 'Rent' : t.have_or_rent === 'buy' ? 'Buy' : 'Likely own'; L.push('- ' + t.item + ' (' + k + ')' + (t.note ? ' - ' + t.note : '')); });
+    L.push('');
+  }
+  if(p.confirm_first && p.confirm_first.length){
+    L.push('CONFIRM FIRST');
+    p.confirm_first.forEach(function(c){ L.push('- ' + c); });
+    L.push('');
+  }
+  if(p.fix_steps && p.fix_steps.length){
+    L.push('THE FIX');
+    p.fix_steps.forEach(function(s, i){ L.push((i + 1) + '. ' + s.title + (s.detail ? ' - ' + s.detail : '')); });
+    L.push('');
+  }
+  if(p.questions && p.questions.length){
+    L.push('OPEN QUESTIONS');
+    p.questions.forEach(function(q){
+      var a = st.answers.find(function(x){ return x.q === q; });
+      L.push('- ' + q + (a && a.answer ? '\n    Your answer: ' + a.answer : ''));
+    });
+    L.push('');
+  }
+  if(st.extra){ L.push('ADDITIONAL NOTES'); L.push(st.extra); L.push(''); }
+  L.push('---');
+  L.push('Fix-It Lens reads a photo, not your house. Confirm on site; call a licensed pro for anything electrical, gas, structural, or hidden behind a wall.');
+  return L.join('\n');
+}
+
+// ---- printable HTML ----
+function updatePrintDoc(){
+  var st = collectState(), p = st.plan, h = '';
+  h += '<div class="pd-title">Fix-It <b>Lens</b> &mdash; Repair Plan</div>';
+  h += '<div class="pd-date">' + esc(new Date().toLocaleString()) + '</div>';
+  if(st.image) h += '<img class="pd-photo" src="' + st.image + '" alt="">';
+  h += '<h3>Problem</h3><p>' + (esc(st.description) || '(no description provided)') + '</p>';
+  if(p){
+    h += '<h3>The read</h3><p>' + esc(p.read) + '</p>';
+    h += '<p class="pd-meta"><span><b>Confidence:</b> ' + (parseInt(p.confidence, 10) || 0) + '%</span>';
+    h += '<span><b>Difficulty:</b> ' + esc(diffLabel(p.difficulty)) + '</span>';
+    h += '<span><b>Time:</b> ' + (esc(p.time_estimate) || '-') + '</span>';
+    h += '<span><b>Materials:</b> ' + (esc(p.cost_estimate) || '-') + '</span></p>';
+    h += '<p><b>Verdict:</b> ' + esc(verdictLabel(p.verdict)) + (p.verdict_note ? ' &mdash; ' + esc(p.verdict_note) : '') + '</p>';
+    if(p.safety_flags && p.safety_flags.length){
+      h += '<h3>Before you touch it</h3>';
+      p.safety_flags.forEach(function(f){ h += '<div class="pd-flag"><b>' + (f.level === 'danger' ? 'DANGER' : 'CAUTION') + ':</b> ' + esc(f.text) + '</div>'; });
+    }
+    if(p.supplies && p.supplies.length){
+      h += '<h3>Supplies</h3><ul>';
+      p.supplies.forEach(function(s){ h += '<li>' + esc(s.item) + ' (' + (s.essential ? 'Essential' : 'Optional') + ')' + (s.note ? ' &mdash; ' + esc(s.note) : '') + '</li>'; });
+      h += '</ul>';
+    }
+    if(p.tools && p.tools.length){
+      h += '<h3>Tools</h3><ul>';
+      p.tools.forEach(function(t){ var k = t.have_or_rent === 'rent' ? 'Rent' : t.have_or_rent === 'buy' ? 'Buy' : 'Likely own'; h += '<li>' + esc(t.item) + ' (' + k + ')' + (t.note ? ' &mdash; ' + esc(t.note) : '') + '</li>'; });
+      h += '</ul>';
+    }
+    if(p.confirm_first && p.confirm_first.length){
+      h += '<h3>Confirm first</h3><ul>';
+      p.confirm_first.forEach(function(c){ h += '<li>' + esc(c) + '</li>'; });
+      h += '</ul>';
+    }
+    if(p.fix_steps && p.fix_steps.length){
+      h += '<h3>The fix</h3><ol>';
+      p.fix_steps.forEach(function(s){ h += '<li><b>' + esc(s.title) + '</b>' + (s.detail ? ' &mdash; ' + esc(s.detail) : '') + '</li>'; });
+      h += '</ol>';
+    }
+    if(p.questions && p.questions.length){
+      h += '<h3>Open questions</h3><ul>';
+      p.questions.forEach(function(q){ var a = st.answers.find(function(x){ return x.q === q; }); h += '<li>' + esc(q) + (a && a.answer ? ' <i>&mdash; ' + esc(a.answer) + '</i>' : '') + '</li>'; });
+      h += '</ul>';
+    }
+    if(st.extra){ h += '<h3>Additional notes</h3><p>' + esc(st.extra) + '</p>'; }
+  } else {
+    h += '<p><i>Not yet diagnosed.</i></p>';
+  }
+  h += '<div class="pd-disc">Fix-It Lens reads a photo, not your house. Confirm on site; call a licensed pro for anything electrical, gas, structural, or hidden behind a wall.</div>';
+  $('printDoc').innerHTML = h;
+}
+
+// ---- export handlers ----
+function needPlan(){ if(!currentPlan){ showToast('Diagnose something first.', true); return false; } return true; }
+function doPrint(){ if(!needPlan()) return; updatePrintDoc(); window.print(); }
+function doDownload(){
+  if(!needPlan()) return;
+  var blob = new Blob([buildReport()], { type: 'text/plain;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'fix-it-lens-plan-' + dateSlug() + '.txt';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+  showToast('Plan downloaded.');
+}
+function doEmail(){
+  if(!needPlan()) return;
+  var body = buildReport(), CAP = 1600;
+  if(body.length > CAP) body = body.slice(0, CAP) + '\n\n[Plan truncated for email. Use Download or Copy for the full version.]';
+  window.location.href = 'mailto:?subject=' + encodeURIComponent('Fix-It Lens repair plan') + '&body=' + encodeURIComponent(body);
+}
+function doCopy(){
+  if(!needPlan()) return;
+  var text = buildReport();
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      showToast('Plan copied.');
+    }catch(e){ showToast('Copy is not available here. Use Download instead.', true); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ showToast('Plan copied.'); }, fallback);
+  } else { fallback(); }
+}
+
+// ---- saved jobs ----
+var JOBS_KEY = 'fixlens_jobs';
+var MAX_JOBS = 6;
+function loadJobs(){ try{ return JSON.parse(localStorage.getItem(JOBS_KEY) || '[]'); }catch(e){ return []; } }
+function saveJobs(arr){
+  try{ localStorage.setItem(JOBS_KEY, JSON.stringify(arr)); return true; }
+  catch(e){ showToast('Storage is full. Delete an old job and try again.', true); return false; }
+}
+function uid(){ return 'j' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+
+function openJobs(prefillName){
+  if(prefillName && !$('jobName').value){
+    var seed = '';
+    if(currentPlan && currentPlan.read) seed = currentPlan.read.split(/[.!?]/)[0].slice(0, 42);
+    if(!seed && lastPayload && lastPayload.description) seed = lastPayload.description.slice(0, 42);
+    $('jobName').value = seed;
+  }
+  $('saveJobBtn').disabled = !imgData;
+  renderJobsList(loadJobs());
+  $('jobsModal').classList.add('open');
+}
+function closeJobsModal(){ $('jobsModal').classList.remove('open'); }
+
+function renderJobsList(jobs){
+  var el = $('jobsList');
+  if(!jobs.length){ el.innerHTML = '<div class="jobs-empty">No saved jobs yet. Capture a photo and save it here to finish later.</div>'; return; }
+  var h = '';
+  jobs.slice().sort(function(a, b){ return b.savedAt - a.savedAt; }).forEach(function(j){
+    var badge, blabel;
+    if(!j.plan){ badge = 'draft'; blabel = 'Not diagnosed'; }
+    else {
+      var openQ = (j.plan.questions || []).filter(function(q){ var a = (j.answers || []).find(function(x){ return x.q === q; }); return !(a && a.answer); }).length;
+      if(openQ){ badge = 'open'; blabel = openQ + ' question' + (openQ > 1 ? 's' : '') + ' open'; }
+      else { badge = 'done'; blabel = 'Answered'; }
+    }
+    var dt = new Date(j.savedAt);
+    var when = dt.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ', ' + dt.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    h += '<li class="job">';
+    h += j.image ? '<img class="job-thumb" src="' + j.image + '" alt="">' : '<div class="job-thumb"></div>';
+    h += '<div class="job-main"><div class="job-name">' + esc(j.name || 'Untitled job') + '</div><div class="job-meta">' + when + '</div><span class="job-badge ' + badge + '">' + blabel + '</span></div>';
+    h += '<div class="job-acts"><button class="j-resume" data-id="' + j.id + '">Resume</button><button class="j-del" data-id="' + j.id + '">Delete</button></div>';
+    h += '</li>';
+  });
+  el.innerHTML = h;
+  el.querySelectorAll('.j-resume').forEach(function(b){ b.addEventListener('click', function(){ resumeJob(b.getAttribute('data-id')); }); });
+  el.querySelectorAll('.j-del').forEach(function(b){ b.addEventListener('click', function(){ deleteJob(b.getAttribute('data-id')); }); });
+}
+
+function saveCurrentJob(){
+  if(!imgData){ showToast('Add a photo before saving.', true); return; }
+  var jobs = loadJobs(), st = collectState();
+  var existing = currentJobId ? jobs.find(function(j){ return j.id === currentJobId; }) : null;
+  var job = existing || { id: uid() };
+  job.name = $('jobName').value.trim() || 'Untitled job';
+  job.savedAt = Date.now();
+  job.description = st.description;
+  job.image = st.image;
+  job.mediaType = st.mediaType;
+  job.plan = st.plan;
+  job.answers = st.answers;
+  job.extra = st.extra;
+  job.model = getModel();
+  if(!existing){
+    jobs.push(job);
+    if(jobs.length > MAX_JOBS){ jobs.sort(function(a, b){ return b.savedAt - a.savedAt; }); jobs = jobs.slice(0, MAX_JOBS); }
+  }
+  if(saveJobs(jobs)){
+    currentJobId = job.id;
+    renderJobsList(loadJobs());
+    showToast(existing ? 'Job updated.' : 'Job saved.');
+  }
+}
+
+function resumeJob(id){
+  var j = loadJobs().find(function(x){ return x.id === id; });
+  if(!j){ showToast('That job is gone.', true); return; }
+  if(j.image){
+    imgData = { base64: j.image.split(',')[1], mediaType: j.mediaType || 'image/jpeg', dataUrl: j.image };
+    preview.src = j.image; preview.style.display = 'block';
+    placeholder.style.display = 'none'; scopeInner.classList.add('has-img'); retake.classList.remove('hidden');
+  } else { imgData = null; }
+  desc.value = j.description || '';
+  lastPayload = { description: j.description || '' };
+  currentJobId = j.id;
+  currentPlan = j.plan || null;
+  if(j.model) localStorage.setItem(LS_MODEL, j.model);
+  closeJobsModal();
+  if(j.plan){
+    pendingRestore = { answers: j.answers || [], extra: j.extra || '' };
+    renderResults(j.plan, false);
+    setBusy(false, 'diagnose');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('Job resumed. Pick up where you left off.');
+  } else {
+    results.className = 'hidden'; results.innerHTML = '';
+    showToast('Draft resumed. Tap Diagnose when ready.');
+  }
+}
+
+function deleteJob(id){
+  var jobs = loadJobs().filter(function(j){ return j.id !== id; });
+  saveJobs(jobs);
+  if(currentJobId === id) currentJobId = null;
+  renderJobsList(jobs);
+  showToast('Job deleted.');
 }
 
 // first-run nudge
