@@ -612,7 +612,7 @@
 <script>
 'use strict';
 
-const CLAUDE_MODEL = 'claude-sonnet-5';
+const CLAUDE_MODEL = await getModel();
 const LS_KEY = 'fixlens_api_key';
 const LS_MODEL = 'fixlens_model';
 const MAX_EDGE = 1568;
@@ -1302,6 +1302,17 @@ function deleteJob(id){
 if(!getKey()){
   setTimeout(function(){ showToast('Add your Anthropic API key in Settings to begin.'); }, 700);
 }
+
+async function getModel(tier = 'sonnet') {
+  try {
+    const response = await fetch('../config.json');
+    const config = await response.json();
+    return config.models[tier];
+  } catch {
+    return 'claude-sonnet-5-5';
+  }
+}
 </script>
 </body>
 </html>
+
